@@ -8,7 +8,7 @@ app = FastAPI()
 @app.get("/", status_code=200)
 async def main() -> int | None:
     """Get the current site view count."""
-    pass
+    return 1
 
 
 @app.post("/site_view", status_code=200)

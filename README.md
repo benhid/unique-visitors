@@ -31,6 +31,14 @@ Endpoint | Method | Description
 `/version` | `GET`  | Provides the current version of the service.
 `/healthz` | `GET`  | Checks the service health; returns 200 OK if up.
 
+## Tests
+
+Execute the unit tests using:
+
+```sh
+python -m unittest discover -s tests
+```
+
 ## License
 
 This project is licensed under the terms of the MIT license. See [LICENSE](LICENSE) for more details.
