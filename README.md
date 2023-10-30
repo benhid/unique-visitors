@@ -1,6 +1,9 @@
+![CI](https://github.com/benhid/unique-visitors/actions/workflows/ci.yml/badge.svg)
+![Release](https://github.com/benhid/unique-visitors/actions/workflows/release.yml/badge.svg)
+
 # Unique Visitors
 
-Count the number of unique visitors to a website without compromising their privacy.
+Count the number of unique visitors to a website without compromising their privacy. Built using FastAPI and backed by PostgreSQL.
 
 ## Install and Setup 
 
@@ -48,6 +51,31 @@ Endpoint | Method | Description
 `/site_view` | `POST` | Increments the visitor count by one.
 `/version` | `GET`  | Provides the current version of the service.
 `/healthz` | `GET`  | Checks the service health; returns 200 OK if up.
+
+Use `curl` to interact with the service:
+
+Initially, the count is zero.
+
+```sh
+$ curl http://localhost
+0
+```
+
+Increment the visitor count by one:
+
+```sh
+$ curl -X POST -H "User-Agent: Mozilla/5.0" http://localhost/site_view
+$ curl http://localhost
+1
+```
+
+Subsequent requests from the same user (same user ip, agent) are ignored:
+
+```sh
+$ curl -X POST -H "User-Agent: Mozilla/5.0" http://localhost/site_view
+$ curl http://localhost
+1
+```
 
 ## Tests
 
