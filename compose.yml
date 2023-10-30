@@ -1,0 +1,16 @@
+services:
+  app:
+    container_name: app
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - DATABASE_URL=postgresql+aiopg://postgres:mysecretpassword@postgresql:5432/visitors
+    depends_on:
+      - postgresql
+  postgresql:
+    container_name: postgresql
+    build: ./postgresql
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_DB=visitors
