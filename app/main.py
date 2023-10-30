@@ -25,8 +25,14 @@ async def site_view(
     request: Request,
     background_tasks: BackgroundTasks,
     user_agent: Annotated[str | None, Header()] = None,
+    referer: Annotated[str | None, Header()] = None,
 ) -> Response:
     """Record a site view."""
+    # Some browsers honor the referer header. If it's present, we'll use it
+    #  to discard inter-site visits.
+    if request.base_url == referer:
+        return Response(status_code=status.HTTP_200_OK)
+
     user_ip = request.client.host
     user_agent = user_agent or ""
     client_id = get_client_id("", user_agent, user_ip)
