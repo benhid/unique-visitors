@@ -2,7 +2,28 @@ import unittest
 
 from fastapi.testclient import TestClient
 
-from app.main import app
+from app.main import app, get_db
+
+
+class MockDatabase:
+    async def connect(self):
+        pass
+
+    async def disconnect(self):
+        pass
+
+    async def fetch_val(self, _):
+        return 1
+
+    async def execute(self, stmt, values):
+        pass
+
+
+def override_get_db():
+    return MockDatabase()
+
+
+app.dependency_overrides[get_db] = override_get_db
 
 client = TestClient(app)
 
