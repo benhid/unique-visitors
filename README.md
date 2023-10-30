@@ -5,6 +5,8 @@
 
 Count the number of unique visitors to a website without compromising their privacy. Built using FastAPI and backed by PostgreSQL.
 
+For a deeper dive into the architectural decisions, take a look at [DESIGN.md](DESIGN.md).
+
 ## Install and Setup 
 
 ### Docker
