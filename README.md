@@ -39,6 +39,14 @@ Execute the unit tests using:
 python -m unittest discover -s tests
 ```
 
+Code style and formatting is enforced with [Ruff](https://github.com/astral-sh/ruff):
+
+```sh
+python -m pip install ruff
+ruff format app tests
+ruff --extend-select I --fix app tests
+```
+
 ## License
 
 This project is licensed under the terms of the MIT license. See [LICENSE](LICENSE) for more details.
