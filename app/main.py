@@ -1,9 +1,20 @@
+from contextlib import asynccontextmanager
 from typing import Annotated
 
 from fastapi import BackgroundTasks, FastAPI, Header, Request, Response, status
 
 from . import __version__
+from .dabatase import get_db
 from .security import get_client_id
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    database = get_db()
+    await database.connect()
+    yield
+    await database.disconnect()
+
 
 app = FastAPI()
 

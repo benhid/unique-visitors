@@ -4,6 +4,16 @@ Count the number of unique visitors to a website without compromising their priv
 
 ## Install and Setup 
 
+### Docker
+
+The application can be run locally with Docker Compose:
+
+```sh
+docker compose up
+```
+
+The service will be available at http://localhost:80.
+
 ### Manual Setup
 
 Install the required dependencies in a virtual environment:
@@ -13,6 +23,14 @@ python -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
+
+Ensure you set the `DATABASE_URL` environment variable to connect with your PostgreSQL database. For example:
+
+```sh
+export DATABASE_URL=postgresql+aiopg://user:password@localhost:5432/db
+```
+
+(Check out [postgresql/](postgresql/) for a quick way to spin up a PostgreSQL database with everything pre-configured in Docker.)
 
 Then, start the server with the following command:
 
