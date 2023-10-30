@@ -12,7 +12,7 @@ app = FastAPI()
 async def main() -> int | None:
     """Get the current site view count. Might take a few seconds to update."""
     # TODO: Fetch from database.
-    pass
+    return 1
 
 
 async def increment_site_views(client_id: str) -> None:
